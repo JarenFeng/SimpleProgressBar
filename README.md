@@ -43,6 +43,8 @@ compile 'cn.geektang.simpleprogressbar:SimpleProgressBar:1.0.1'
   <type>pom</type>
 </dependency>
 
+```
+
 #### 配置
 
 HorizontalProgressBar有14个参数可配置:
