@@ -25,23 +25,53 @@ GitHub: https://github.com/GeekTR
 
 最新版版本号: `1.0.1`
 
-Android Studio请在build.gradle的dependencies中加入以下代码:
+Android Studio引用:
+
+Step 1.Add it in your root build.gradle at the end of repositories:
 
 ```
-compile 'cn.geektang.simpleprogressbar:SimpleProgressBar:1.0.1'
-
+allprojects {
+        repositories {
+            ...
+            maven { url "https://jitpack.io" }
+        }
+    }
 ```
 
-`pom.xml` 文件中
+Step 2. Add the dependency
+
+```
+dependencies {
+            compile 'com.github.GeekTR:SimpleProgressBar:265cff0d08'
+    }
+```
+
+maven引用：
+
+Step 1. Add the JitPack repository to your build file
 
 ```xml
 
-<dependency>
-  <groupId>cn.geektang.simpleprogressbar</groupId>
-  <artifactId>SimpleProgressBar</artifactId>
-  <version>1.0.1</version>
-  <type>pom</type>
-</dependency>
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+```
+
+Step 2. Add the dependency
+
+
+```xml
+
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
 
 ```
 
