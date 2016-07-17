@@ -40,7 +40,7 @@ Step 2. Add the dependency
 
 ```
 dependencies {
-            compile 'com.github.GeekTR:SimpleProgressBar:265cff0d08'
+            compile 'com.github.GeekTR:SimpleProgressBar:249590058d'
     }
 ```
 
