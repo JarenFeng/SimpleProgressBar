@@ -21,8 +21,6 @@ GitHub: https://github.com/GeekTR
 
 #### 中央库依赖
 
-项目已经发布到了Jcenter，可以在Maven或者Gradle下可如下直接引入:
-
 最新版版本号: `1.0.1`
 
 Android Studio引用:
