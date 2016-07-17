@@ -1,5 +1,6 @@
 package cn.geektang.test;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
             cpb2.setProgress(cpb2.getProgress() + 1);
 
             handler.sendEmptyMessageDelayed(0,100);
+
+            hpb1.setReachColor(Color.RED);
+            hpb1.setProgress(40);
+            hpb1.setMax(200);
+            hpb1.setReachHeight(60);
+            hpb1.setUnReachColor(Color.BLUE);
+            hpb1.setUnReachHeight(50);
+            hpb1.setTextPositon(HorizontalProgressBar.CENTER);
+            hpb1.setTextPadding(10);
         }
     };
 
@@ -54,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         cpb1.setProcessTextAdapter(new ProgressBarBase.ProcessTextAdapter() {
             @Override
             public String getCustomProcessText(int process, int max) {
-                return "自定义：" + process;
+                return "Custom：" + process;
             }
         });
     }
