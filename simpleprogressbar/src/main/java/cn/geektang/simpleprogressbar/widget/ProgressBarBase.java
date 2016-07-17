@@ -29,19 +29,19 @@ public abstract class ProgressBarBase extends ProgressBar {
     protected static final int DEFAULT_TEXT_PADDING = 3;//dp
     protected static final int DEFAULT_TEXT_MODEL = PERCENTAGE;
 
-    protected int reachColor;
-    protected int reachHeight;
-    protected int unReachColor;
-    protected int unReachHeight;
-    protected int textSize;
-    protected int textColor;
-    protected boolean textVisible;
-    protected int textPadding;
-    protected int textPaddingLeft;
-    protected int textPaddingRight;
-    protected int textPaddingTop;
-    protected int textPaddingBottom;
-    protected int textModel;
+    protected int reachColor = DEFAULT_REACH_COLOR;
+    protected int reachHeight = DEFAULT_REACH_HEIGHT;
+    protected int unReachColor = DEFAULT_UNREACH_COLOR;
+    protected int unReachHeight = DEFAULT_UNREACH_HEIGHT;
+    protected int textSize = DEFAULT_TEXT_SIZE;
+    protected int textColor = DEFULT_TEXT_COLOR;
+    protected boolean textVisible = DEFAULT_IS_SHOW_TEXT;
+    protected int textPadding = DEFAULT_TEXT_PADDING;
+    protected int textPaddingLeft = DEFAULT_TEXT_PADDING;
+    protected int textPaddingRight = DEFAULT_TEXT_PADDING;
+    protected int textPaddingTop = DEFAULT_TEXT_PADDING;
+    protected int textPaddingBottom = DEFAULT_TEXT_PADDING;
+    protected int textModel = DEFAULT_TEXT_MODEL;
 
     protected int mRealHeight;
     protected int mRealWidth;
@@ -67,44 +67,44 @@ public abstract class ProgressBarBase extends ProgressBar {
         if (null != attrs) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ProgressBarBase);
 
-            reachColor = ta.getColor(R.styleable.ProgressBarBase_tr_reach_color, DEFAULT_REACH_COLOR);
+            reachColor = ta.getColor(R.styleable.ProgressBarBase_tr_reach_color, reachColor);
             reachHeight = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_reach_height,
-                    DensityHelper.dip2px(context, DEFAULT_REACH_HEIGHT));
+                    DensityHelper.dip2px(context, reachHeight));
 
 
-            unReachColor = ta.getColor(R.styleable.ProgressBarBase_tr_unreach_color, DEFAULT_UNREACH_COLOR);
+            unReachColor = ta.getColor(R.styleable.ProgressBarBase_tr_unreach_color, unReachColor);
             unReachHeight = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_unreach_height,
-                    DensityHelper.dip2px(context, DEFAULT_UNREACH_HEIGHT));
+                    DensityHelper.dip2px(context, unReachHeight));
 
             textSize = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_size,
-                    DensityHelper.sp2px(context, DEFAULT_TEXT_SIZE));
-            textColor = ta.getColor(R.styleable.ProgressBarBase_tr_text_color, DEFULT_TEXT_COLOR);
-            textVisible = ta.getBoolean(R.styleable.ProgressBarBase_tr_text_visible, DEFAULT_IS_SHOW_TEXT);
+                    DensityHelper.sp2px(context, textSize));
+            textColor = ta.getColor(R.styleable.ProgressBarBase_tr_text_color, textColor);
+            textVisible = ta.getBoolean(R.styleable.ProgressBarBase_tr_text_visible, textVisible);
 
             textPadding = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_padding,
-                    DensityHelper.dip2px(context, DEFAULT_TEXT_PADDING));
+                    DensityHelper.dip2px(context, textPadding));
 
             textPaddingLeft = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_padding_left,
-                    textPadding);
+                    textPaddingLeft);
 
             textPaddingRight = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_padding_right,
-                    textPadding);
+                    textPaddingRight);
 
             textPaddingTop = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_padding_top,
-                    textPadding);
+                    textPaddingTop);
 
             textPaddingBottom = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_padding_bottom,
-                    textPadding);
+                    textPaddingBottom);
 
-            textModel = ta.getInt(R.styleable.ProgressBarBase_tr_text_show_model, DEFAULT_TEXT_MODEL);
+            textModel = ta.getInt(R.styleable.ProgressBarBase_tr_text_show_model, textModel);
 
             ta.recycle();
         }
@@ -211,6 +211,10 @@ public abstract class ProgressBarBase extends ProgressBar {
 
     public void setTextPadding(int textPadding) {
         this.textPadding = textPadding;
+        this.textPaddingLeft = textPadding;
+        this.textPaddingRight = textPadding;
+        this.textPaddingTop = textPadding;
+        this.textPaddingBottom = textPadding;
         postInvalidate();
     }
 

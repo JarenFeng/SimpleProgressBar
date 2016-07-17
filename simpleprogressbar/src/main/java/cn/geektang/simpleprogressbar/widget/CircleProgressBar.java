@@ -20,8 +20,8 @@ public class CircleProgressBar extends ProgressBarBase {
     private static final float DEFAULT_START_ANGLE = 0;//°
     private static final int DEFAULT_RADIUS = 30;//dp
 
-    private float startAngle;
-    private int radius;
+    private float startAngle = DEFAULT_START_ANGLE;
+    private int radius = DEFAULT_RADIUS;
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int mHeight, mWidth;
@@ -42,10 +42,10 @@ public class CircleProgressBar extends ProgressBarBase {
     private void obtainAttrs(Context context, AttributeSet attrs) {
         if (null != attrs) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
-            startAngle = ta.getFloat(R.styleable.CircleProgressBar_tr_start_angle, DEFAULT_START_ANGLE);
+            startAngle = ta.getFloat(R.styleable.CircleProgressBar_tr_start_angle, startAngle);
             radius = (int) ta.getDimension(
                     R.styleable.CircleProgressBar_tr_radius,
-                    DensityHelper.dip2px(context, DEFAULT_RADIUS));
+                    DensityHelper.dip2px(context, radius));
             ta.recycle();
         }
         initPaint();

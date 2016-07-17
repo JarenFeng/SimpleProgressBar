@@ -25,7 +25,7 @@ public class HorizontalProgressBar extends ProgressBarBase {
 
     private static final int DEFAULT_TEXT_POSITION = CENTER;
 
-    private int textPositon;
+    private int textPositon = DEFAULT_TEXT_POSITION;
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -47,7 +47,7 @@ public class HorizontalProgressBar extends ProgressBarBase {
     private void obtainAttrs(Context context, AttributeSet attrs) {
         if (null != attrs) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.HorizontalProgressBar);
-            textPositon = ta.getInt(R.styleable.HorizontalProgressBar_tr_text_location, DEFAULT_TEXT_POSITION);
+            textPositon = ta.getInt(R.styleable.HorizontalProgressBar_tr_text_location, textPositon);
             ta.recycle();
         }
     }
