@@ -14,7 +14,7 @@ GitHub: https://github.com/GeekTR
 
 * Demo运行时效果图.
     <div class='row'>
-        <img src='http://oagaawgkn.bkt.clouddn.com/demo.gif' width="500px" style='border: #f1f1f1 solid 1px'/>
+        <img src='https://github.com/GeekTR/SimpleProgressBar/raw/master/demo.gif' width="500px" style='border: #f1f1f1 solid 1px'/>
     </div>
 
 # 使用方式
