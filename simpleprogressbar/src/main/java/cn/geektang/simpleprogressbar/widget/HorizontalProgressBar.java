@@ -238,6 +238,11 @@ public class HorizontalProgressBar extends ProgressBarBase {
 
         if(!textVisible){
             drawText = "";
+            // 重置textPadding
+            textPaddingLeft = 0;
+            textPaddingRight = 0;
+            textPaddingTop = 0;
+            textPaddingBottom = 0;
         }
         int textLength = (int) mPaint.measureText(drawText);
 
