@@ -15,33 +15,36 @@ import cn.geektang.simpleprogressbar.common.DensityHelper;
  * Date   :2016/7/16
  */
 public abstract class ProgressBarBase extends ProgressBar {
+    // text mode
     public static final int PERCENTAGE = 0;
     public static final int FRACTION = 1;
     public static final int OTHER = 2;
 
-    protected static final int DEFAULT_REACH_COLOR = Color.RED;
-    protected static final int DEFAULT_REACH_HEIGHT = 2;//dp
-    protected static final int DEFAULT_UNREACH_COLOR = Color.BLUE;
-    protected static final int DEFAULT_UNREACH_HEIGHT = 2;//dp
-    protected static final int DEFAULT_TEXT_SIZE = 14;//sp
-    protected static final int DEFULT_TEXT_COLOR = Color.GREEN;
-    protected static final boolean DEFAULT_IS_SHOW_TEXT = true;
-    protected static final int DEFAULT_TEXT_PADDING = 3;//dp
-    protected static final int DEFAULT_TEXT_MODEL = PERCENTAGE;
+    // default attrs
+    protected static final int DEFAULT_REACHED_COLOR = Color.RED;
+    protected static final int DEFAULT_REACHED_HEIGHT = 2;    // dp
+    protected static final int DEFAULT_UNREACHED_COLOR = Color.BLUE;
+    protected static final int DEFAULT_UNREACHED_HEIGHT = 2;    // dp
+    protected static final int DEFAULT_TEXT_SIZE = 14;  // sp
+    protected static final int DEFAULT_TEXT_COLOR = Color.GREEN;
+    protected static final boolean DEFAULT_SHOW_TEXT = true;
+    protected static final int DEFAULT_TEXT_PADDING = 3;    // dp
+    protected static final int DEFAULT_TEXT_MODE = PERCENTAGE;
 
-    protected int reachColor = DEFAULT_REACH_COLOR;
-    protected int reachHeight = DEFAULT_REACH_HEIGHT;
-    protected int unReachColor = DEFAULT_UNREACH_COLOR;
-    protected int unReachHeight = DEFAULT_UNREACH_HEIGHT;
+    // attrs
+    protected int reachedColor = DEFAULT_REACHED_COLOR;
+    protected int reachedHeight = DEFAULT_REACHED_HEIGHT;
+    protected int unreachedColor = DEFAULT_UNREACHED_COLOR;
+    protected int unreachedHeight = DEFAULT_UNREACHED_HEIGHT;
     protected int textSize = DEFAULT_TEXT_SIZE;
-    protected int textColor = DEFULT_TEXT_COLOR;
-    protected boolean textVisible = DEFAULT_IS_SHOW_TEXT;
+    protected int textColor = DEFAULT_TEXT_COLOR;
+    protected boolean textVisible = DEFAULT_SHOW_TEXT;
     protected int textPadding = DEFAULT_TEXT_PADDING;
     protected int textPaddingLeft = DEFAULT_TEXT_PADDING;
     protected int textPaddingRight = DEFAULT_TEXT_PADDING;
     protected int textPaddingTop = DEFAULT_TEXT_PADDING;
     protected int textPaddingBottom = DEFAULT_TEXT_PADDING;
-    protected int textModel = DEFAULT_TEXT_MODEL;
+    protected int textMode = DEFAULT_TEXT_MODE;
 
     protected int mRealHeight;
     protected int mRealWidth;
@@ -67,16 +70,16 @@ public abstract class ProgressBarBase extends ProgressBar {
         if (null != attrs) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.ProgressBarBase);
 
-            reachColor = ta.getColor(R.styleable.ProgressBarBase_tr_reach_color, reachColor);
-            reachHeight = (int) ta.getDimension(
-                    R.styleable.ProgressBarBase_tr_reach_height,
-                    DensityHelper.dip2px(context, reachHeight));
+            reachedColor = ta.getColor(R.styleable.ProgressBarBase_tr_reached_color, reachedColor);
+            reachedHeight = (int) ta.getDimension(
+                    R.styleable.ProgressBarBase_tr_reached_height,
+                    DensityHelper.dip2px(context, reachedHeight));
 
 
-            unReachColor = ta.getColor(R.styleable.ProgressBarBase_tr_unreach_color, unReachColor);
-            unReachHeight = (int) ta.getDimension(
-                    R.styleable.ProgressBarBase_tr_unreach_height,
-                    DensityHelper.dip2px(context, unReachHeight));
+            unreachedColor = ta.getColor(R.styleable.ProgressBarBase_tr_unreached_color, unreachedColor);
+            unreachedHeight = (int) ta.getDimension(
+                    R.styleable.ProgressBarBase_tr_unreached_height,
+                    DensityHelper.dip2px(context, unreachedHeight));
 
             textSize = (int) ta.getDimension(
                     R.styleable.ProgressBarBase_tr_text_size,
@@ -104,7 +107,7 @@ public abstract class ProgressBarBase extends ProgressBar {
                     R.styleable.ProgressBarBase_tr_text_padding_bottom,
                     textPaddingBottom);
 
-            textModel = ta.getInt(R.styleable.ProgressBarBase_tr_text_show_model, textModel);
+            textMode = ta.getInt(R.styleable.ProgressBarBase_tr_text_show_mode, textMode);
 
             ta.recycle();
         }
@@ -117,15 +120,15 @@ public abstract class ProgressBarBase extends ProgressBar {
 
     protected String getProcessText() {
         String text = null;
-        if (textModel == PERCENTAGE) {
+        if (textMode == PERCENTAGE) {
             text = (int) (1.0f * getProgress() / getMax() * 100) + "%";
-        } else if (textModel == FRACTION) {
+        } else if (textMode == FRACTION) {
             text = getProgress() + "/" + getMax();
         } else {
             if (null != processTextAdapter) {
                 text = processTextAdapter.getCustomProcessText(getProgress(), getMax());
             } else {
-                throw new RuntimeException("You must set ProcessTextAdapter!");
+                throw new RuntimeException("A ProgressBarBase#ProcessTextAdapter is required!");
             }
         }
         return text;
@@ -142,39 +145,39 @@ public abstract class ProgressBarBase extends ProgressBar {
             onProcessChangeListener.onProcessChange(progress, getMax());
     }
 
-    public int getReachColor() {
-        return reachColor;
+    public int getReachedColor() {
+        return reachedColor;
     }
 
-    public void setReachColor(int reachColor) {
-        this.reachColor = reachColor;
+    public void setReachColor(int reachedColor) {
+        this.reachedColor = reachedColor;
         postInvalidate();
     }
 
-    public int getReachHeight() {
-        return reachHeight;
+    public int getReachedHeight() {
+        return reachedHeight;
     }
 
-    public void setReachHeight(int reachHeight) {
-        this.reachHeight = reachHeight;
+    public void setReachedHeight(int reachedHeight) {
+        this.reachedHeight = reachedHeight;
         postInvalidate();
     }
 
-    public int getUnReachColor() {
-        return unReachColor;
+    public int getUnReachedColor() {
+        return unreachedColor;
     }
 
-    public void setUnReachColor(int unReachColor) {
-        this.unReachColor = unReachColor;
+    public void setUnreachedColor(int unreachedColor) {
+        this.unreachedColor = unreachedColor;
         postInvalidate();
     }
 
-    public int getUnReachHeight() {
-        return unReachHeight;
+    public int getUnreachedHeight() {
+        return unreachedHeight;
     }
 
-    public void setUnReachHeight(int unReachHeight) {
-        this.unReachHeight = unReachHeight;
+    public void setUnreachedHeight(int unreachedHeight) {
+        this.unreachedHeight = unreachedHeight;
         postInvalidate();
     }
 
@@ -255,15 +258,15 @@ public abstract class ProgressBarBase extends ProgressBar {
     }
 
 
-    public int getTextModel() {
-        return textModel;
+    public int getTextMode() {
+        return textMode;
     }
 
-    public void setTextModel(int textModel) {
-        if (textModel < PERCENTAGE && textModel > OTHER) {
-            throw new RuntimeException("No such model!");
+    public void setTextMode(int textMode) {
+        if (textMode < PERCENTAGE && textMode > OTHER) {
+            throw new RuntimeException("Unsupported mode!");
         }
-        this.textModel = textModel;
+        this.textMode = textMode;
         postInvalidate();
     }
 

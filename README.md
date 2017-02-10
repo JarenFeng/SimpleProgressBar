@@ -6,7 +6,7 @@ GitHub: https://github.com/GeekTR
 
 # Simple ProgessBar
 
-我这里集成了一些简单的ProgressBar，继承自官方的ProgrssBar。
+我这里集成了一些简单的ProgressBar，继承自官方的ProgressBar。
 
 他使用起来非常简单。
 
@@ -77,21 +77,21 @@ Step 2. Add the dependency
 
 HorizontalProgressBar有14个参数可配置:
 
-* Reach bar的颜色
+* reached bar的颜色
 
-    默认: 0xFFFF0000，对应的属性为tr_reach_color。
+    默认: 0xFFFF0000，对应的属性为tr_reached_color。
 
-* Reach bar的高度
+* reached bar的高度
 
-    默认，`2dp`，对应的属性为tr_reach_height。
+    默认，`2dp`，对应的属性为tr_reached_height。
 
-* UnReach bar的颜色
+* unreached bar的颜色
 
-    默认 0xFF0000FF，对应的属性为tr_unreach_color。
+    默认 0xFF0000FF，对应的属性为tr_unreached_color。
 
-* UnReach bar的高度
+* unreached bar的高度
 
-    默认，`2dp`，对应的属性为tr_unreach_height。
+    默认，`2dp`，对应的属性为tr_unreached_height。
 
 * 显示百分比的字是否可见
 
@@ -112,11 +112,11 @@ HorizontalProgressBar有14个参数可配置:
 
 * 字的显示模式
 
-    默认，Percentage，对应的属性为tr_text_show_model。分别有Percentage，Fraction和Other三种模式。Percentage表示以百分数显示，Fraction表示以分数的形式显示，Other则表示用户自定义，用户需设置ProcessTextAdapter来自定义显示内容。
+    默认，percentage，对应的属性为tr_text_show_mode。分别有percentage，fraction和other三种模式。percentage表示以百分数显示，fraction表示以分数的形式显示，other则表示用户自定义，用户需设置ProgressBarBase#ProcessTextAdapter来自定义显示内容。
     
 * 字的显示位置
 
-    默认，Center，对应的属性为tr_text_location。分别有Center,RightTop,LeftTop,RightBottom和LeftBottom五种位置。Center表示字显示在进度条中间，LeftTop表示字显示在进度条左上...
+    默认，center，对应的属性为tr_text_position。分别有center,right_top,left_top,right_bottom和left_bottom五种位置。center表示字显示在进度条中间，left_top表示字显示在进度条左上...
 
 ##### xml中配置示例
 
@@ -137,19 +137,19 @@ HorizontalProgressBar有14个参数可配置:
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="50"
-        app:tr_reach_color="@android:color/holo_blue_light"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_blue_light"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/holo_red_dark"
-        app:tr_text_location="Center"
+        app:tr_text_position="center"
         app:tr_text_padding_bottom="0dp"
         app:tr_text_padding_left="5dp"
         app:tr_text_padding_right="5dp"
         app:tr_text_padding_top="0dp"
-        app:tr_text_show_model="Percentage"
+        app:tr_text_show_mode="percentage"
         app:tr_text_size="16sp"
         app:tr_text_visible="true"
-        app:tr_unreach_color="@android:color/holo_green_light"
-        app:tr_unreach_height="1dp"/>
+        app:tr_unreached_color="@android:color/holo_green_light"
+        app:tr_unreached_height="1dp"/>
 </LinearLayout>
 
 ```
@@ -157,13 +157,13 @@ HorizontalProgressBar有14个参数可配置:
 ### 也可以在java代码中配置
 
 ```java
-mProgressBar.setReachColor(Color.RED);
+mProgressBar.setReachedColor(Color.RED);
 mProgressBar.setProgress(40);
 mProgressBar.setMax(200);
-mProgressBar.setReachHeight(60);
-mProgressBar.setUnReachColor(Color.BLUE);
-mProgressBar.setUnReachHeight(50);
-mProgressBar.setTextPositon(HorizontalProgressBar.CENTER);
+mProgressBar.setReachedHeight(60);
+mProgressBar.setUnreachedColor(Color.BLUE);
+mProgressBar.setUnreachedHeight(50);
+mProgressBar.setTextPosition(HorizontalProgressBar.CENTER);
 mProgressBar.setTextPadding(10);
 ```
 
@@ -171,13 +171,13 @@ CircleProgressBar有10个参数可配置:
 
 * 和HorizontalProgressBar相同的参数
 
-    除了tr_text_location，tr_text_paing及tr_text_paing相关的四个属性外，其余的HorizontalProgressBar均适用于CircleProgressBar。
+    除了tr_text_position及tr_text_padding相关的五个属性外，其余的HorizontalProgressBar均适用于CircleProgressBar。
 
-* Reach bar的起始角度
+* reached bar的起始角度
 
     默认 , 0° ，对应的属性为tr_start_angle。
 
-* Circle的半径
+* circle的半径
 
     默认 , 30dp ，对应的属性为tr_radius。
 
@@ -200,16 +200,16 @@ CircleProgressBar有10个参数可配置:
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        app:tr_reach_color="@android:color/holo_orange_light"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_orange_light"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/black"
         app:tr_text_padding_top="5dp"
         app:tr_radius="50dp"
         app:tr_start_angle="0"
-        app:tr_text_show_model="Other"
+        app:tr_text_show_mode="other"
         app:tr_text_size="14sp"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="2dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="2dp"/>
 </LinearLayout>
 
 ```

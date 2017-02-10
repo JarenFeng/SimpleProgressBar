@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
             hpb1.setReachColor(Color.RED);
             hpb1.setProgress(40);
             hpb1.setMax(200);
-            hpb1.setReachHeight(60);
-            hpb1.setUnReachColor(Color.BLUE);
-            hpb1.setUnReachHeight(50);
-            hpb1.setTextPositon(HorizontalProgressBar.CENTER);
+            hpb1.setReachedHeight(60);
+            hpb1.setUnreachedColor(Color.BLUE);
+            hpb1.setUnreachedHeight(50);
+            hpb1.setTextPosition(HorizontalProgressBar.CENTER);
             hpb1.setTextPadding(10);
         }
     };

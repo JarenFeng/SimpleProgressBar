@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="tr_reach_color" format="color"></attr>
-    <attr name="tr_reach_height" format="dimension"></attr>
-    <attr name="tr_unreach_color" format="color"></attr>
-    <attr name="tr_unreach_height" format="dimension"></attr>
+    <attr name="tr_reached_color" format="color"></attr>
+    <attr name="tr_reached_height" format="dimension"></attr>
+    <attr name="tr_unreached_color" format="color"></attr>
+    <attr name="tr_unreached_height" format="dimension"></attr>
     <attr name="tr_text_size" format="dimension"></attr>
     <attr name="tr_text_color" format="color"></attr>
     <attr name="tr_text_visible" format="boolean"></attr>
@@ -12,31 +12,31 @@
     <attr name="tr_text_padding_right" format="dimension"></attr>
     <attr name="tr_text_padding_top" format="dimension"></attr>
     <attr name="tr_text_padding_bottom" format="dimension"></attr>
-    <attr name="tr_text_show_model" format="enum">
-        <enum name="Percentage" value="0"></enum>
-        <enum name="Fraction" value="1"></enum>
-        <enum name="Other" value="2"></enum>
+    <attr name="tr_text_show_mode" format="enum">
+        <enum name="percentage" value="0"></enum>
+        <enum name="fraction" value="1"></enum>
+        <enum name="other" value="2"></enum>
     </attr>
-    <attr name="tr_text_location" format="enum">
-        <enum name="Center" value="0"></enum>
-        <enum name="RightTop" value="1"></enum>
-        <enum name="LeftTop" value="2"></enum>
-        <enum name="RightBottom" value="3"></enum>
-        <enum name="LeftBottom" value="4"></enum>
+    <attr name="tr_text_position" format="enum">
+        <enum name="center" value="0"></enum>
+        <enum name="right_top" value="1"></enum>
+        <enum name="left_top" value="2"></enum>
+        <enum name="right_bottom" value="3"></enum>
+        <enum name="left_bottom" value="4"></enum>
     </attr>
     <attr name="tr_start_angle" format="float"></attr>
     <attr name="tr_radius" format="dimension"></attr>
 
     <declare-styleable name="ProgressBarBase">
-        <attr name="tr_reach_color"></attr>
-        <attr name="tr_reach_height"></attr>
-        <attr name="tr_unreach_color"></attr>
-        <attr name="tr_unreach_height"></attr>
+        <attr name="tr_reached_color"></attr>
+        <attr name="tr_reached_height"></attr>
+        <attr name="tr_unreached_color"></attr>
+        <attr name="tr_unreached_height"></attr>
         <attr name="tr_text_size"></attr>
         <attr name="tr_text_color"></attr>
         <attr name="tr_text_visible"></attr>
         <attr name="tr_text_padding"></attr>
-        <attr name="tr_text_show_model"></attr>
+        <attr name="tr_text_show_mode"></attr>
         <attr name="tr_text_padding_left"></attr>
         <attr name="tr_text_padding_right"></attr>
         <attr name="tr_text_padding_top"></attr>
@@ -44,7 +44,7 @@
     </declare-styleable>
 
     <declare-styleable name="HorizontalProgressBar">
-        <attr name="tr_text_location"></attr>
+        <attr name="tr_text_position"></attr>
     </declare-styleable>
 
     <declare-styleable name="CircleProgressBar">

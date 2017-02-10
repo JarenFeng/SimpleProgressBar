@@ -16,19 +16,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="50"
-        app:tr_reach_color="@android:color/holo_blue_light"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_blue_light"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/holo_red_dark"
-        app:tr_text_location="Center"
+        app:tr_text_position="center"
         app:tr_text_padding_bottom="0dp"
         app:tr_text_padding_left="5dp"
         app:tr_text_padding_right="5dp"
         app:tr_text_padding_top="0dp"
-        app:tr_text_show_model="Percentage"
+        app:tr_text_show_mode="percentage"
         app:tr_text_size="16sp"
         app:tr_text_visible="true"
-        app:tr_unreach_color="@android:color/holo_green_light"
-        app:tr_unreach_height="1dp"/>
+        app:tr_unreached_color="@android:color/holo_green_light"
+        app:tr_unreached_height="1dp"/>
 
 
     <cn.geektang.simpleprogressbar.widget.HorizontalProgressBar
@@ -37,18 +37,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        app:tr_reach_color="@android:color/holo_orange_light"
-        app:tr_reach_height="2dp"
+        app:tr_reached_color="@android:color/holo_orange_light"
+        app:tr_reached_height="2dp"
         app:tr_text_color="@android:color/black"
-        app:tr_text_location="Center"
+        app:tr_text_position="center"
         app:tr_text_padding="5dp"
         app:tr_text_padding_bottom="0dp"
         app:tr_text_padding_top="0dp"
-        app:tr_text_show_model="Fraction"
+        app:tr_text_show_mode="fraction"
         app:tr_text_size="14sp"
         app:tr_text_visible="true"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="2dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="2dp"/>
 
     <cn.geektang.simpleprogressbar.widget.HorizontalProgressBar
         android:id="@+id/hpb_3"
@@ -56,16 +56,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        app:tr_reach_color="@android:color/darker_gray"
-        app:tr_reach_height="10dp"
+        app:tr_reached_color="@android:color/darker_gray"
+        app:tr_reached_height="10dp"
         app:tr_text_color="@android:color/black"
-        app:tr_text_location="Center"
+        app:tr_text_position="center"
         app:tr_text_padding="0dp"
-        app:tr_text_show_model="Percentage"
+        app:tr_text_show_mode="percentage"
         app:tr_text_size="14sp"
         app:tr_text_visible="false"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="8dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="8dp"/>
 
     <cn.geektang.simpleprogressbar.widget.HorizontalProgressBar
         android:id="@+id/hpb_4"
@@ -73,15 +73,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        app:tr_reach_color="@android:color/holo_purple"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_purple"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/black"
-        app:tr_text_location="RightBottom"
+        app:tr_text_position="right_bottom"
         app:tr_text_padding_top="5dp"
-        app:tr_text_show_model="Percentage"
+        app:tr_text_show_mode="percentage"
         app:tr_text_size="14sp"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="2dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="2dp"/>
 
     <cn.geektang.simpleprogressbar.widget.HorizontalProgressBar
         android:id="@+id/hpb_5"
@@ -89,15 +89,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        app:tr_reach_color="@android:color/holo_orange_light"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_orange_light"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/black"
-        app:tr_text_location="LeftTop"
+        app:tr_text_position="left_top"
         app:tr_text_padding_top="5dp"
-        app:tr_text_show_model="Percentage"
+        app:tr_text_show_mode="percentage"
         app:tr_text_size="14sp"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="2dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="2dp"/>
 
     <cn.geektang.simpleprogressbar.widget.CircleProgressBar
         android:id="@+id/cpb_1"
@@ -105,16 +105,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="0"
-        app:tr_reach_color="@android:color/holo_orange_light"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_orange_light"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/black"
         app:tr_text_padding_top="5dp"
         app:tr_radius="50dp"
         app:tr_start_angle="0"
-        app:tr_text_show_model="Other"
+        app:tr_text_show_mode="other"
         app:tr_text_size="14sp"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="2dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="2dp"/>
 
     <cn.geektang.simpleprogressbar.widget.CircleProgressBar
         android:id="@+id/cpb_2"
@@ -122,15 +122,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="50"
-        app:tr_reach_color="@android:color/holo_orange_light"
-        app:tr_reach_height="3dp"
+        app:tr_reached_color="@android:color/holo_orange_light"
+        app:tr_reached_height="3dp"
         app:tr_text_color="@android:color/black"
         app:tr_text_padding_top="5dp"
         app:tr_radius="50dp"
         app:tr_start_angle="-90"
-        app:tr_text_show_model="Percentage"
+        app:tr_text_show_mode="percentage"
         app:tr_text_size="14sp"
-        app:tr_unreach_color="@android:color/holo_blue_bright"
-        app:tr_unreach_height="2dp"/>
+        app:tr_unreached_color="@android:color/holo_blue_bright"
+        app:tr_unreached_height="2dp"/>
 
 </LinearLayout>

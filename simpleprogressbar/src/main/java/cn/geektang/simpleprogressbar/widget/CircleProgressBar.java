@@ -60,8 +60,8 @@ public class CircleProgressBar extends ProgressBarBase {
 
     @Override
     protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        mWidth = radius * 2 + getPaddingLeft() + getPaddingRight() + Math.max(reachHeight, unReachHeight) * 2;
-        mHeight = radius * 2 + getPaddingTop() + getPaddingBottom() + Math.max(reachHeight, unReachHeight) * 2;
+        mWidth = radius * 2 + getPaddingLeft() + getPaddingRight() + Math.max(reachedHeight, unreachedHeight) * 2;
+        mHeight = radius * 2 + getPaddingTop() + getPaddingBottom() + Math.max(reachedHeight, unreachedHeight) * 2;
         mWidth = resolveSize(mWidth, widthMeasureSpec);
         mHeight = resolveSize(mHeight, heightMeasureSpec);
 
@@ -74,28 +74,28 @@ public class CircleProgressBar extends ProgressBarBase {
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         canvas.save();
-        int translateX = getPaddingLeft() + Math.max(reachHeight, unReachHeight);
-        int translateY = getPaddingTop() + Math.max(reachHeight, unReachHeight);
+        int translateX = getPaddingLeft() + Math.max(reachedHeight, unreachedHeight);
+        int translateY = getPaddingTop() + Math.max(reachedHeight, unreachedHeight);
 
         if (mRealHeight + getPaddingBottom() + getPaddingTop() < mHeight) {
-            translateY = (int) (mHeight * 0.5f - radius - Math.max(reachHeight, unReachHeight));
+            translateY = (int) (mHeight * 0.5f - radius - Math.max(reachedHeight, unreachedHeight));
         }
 
         if (mRealWidth + getPaddingLeft() + getPaddingRight() < mWidth) {
-            translateX = (int) (mWidth * 0.5f - radius - Math.max(reachHeight, unReachHeight));
+            translateX = (int) (mWidth * 0.5f - radius - Math.max(reachedHeight, unreachedHeight));
         }
         canvas.translate(translateX, translateY);
 
-        mPaint.setColor(unReachColor);
-        mPaint.setStrokeWidth(unReachHeight);
+        mPaint.setColor(unreachedColor);
+        mPaint.setStrokeWidth(unreachedHeight);
         mPaint.setStyle(Paint.Style.STROKE);
 
         float sAngle =  1.0f * getProgress() / getMax() * 360 + startAngle;
         float sweepAngle = 360 - 1.0f * getProgress() / getMax() * 360;
         canvas.drawArc(rf, sAngle, sweepAngle, false, mPaint);
 
-        mPaint.setColor(reachColor);
-        mPaint.setStrokeWidth(reachHeight);
+        mPaint.setColor(reachedColor);
+        mPaint.setStrokeWidth(reachedHeight);
         mPaint.setStyle(Paint.Style.STROKE);
         sweepAngle = (int) (1.0f * getProgress() / getMax() * 360);
         if(getProgress() > 0)

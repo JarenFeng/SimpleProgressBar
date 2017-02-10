@@ -17,15 +17,16 @@ import cn.geektang.simpleprogressbar.common.DensityHelper;
  */
 public class HorizontalProgressBar extends ProgressBarBase {
 
+    // text positions
     public static final int CENTER = 0;
-    public static final int RIGHTTOP = 1;
-    public static final int LEFTTOP = 2;
-    public static final int RIGHTBOTTOM = 3;
-    public static final int LEFTBOTTOM = 4;
+    public static final int RIGHT_TOP = 1;
+    public static final int LEFT_TOP = 2;
+    public static final int RIGHT_BOTTOM = 3;
+    public static final int LEFT_BOTTOM = 4;
 
     private static final int DEFAULT_TEXT_POSITION = CENTER;
 
-    private int textPositon = DEFAULT_TEXT_POSITION;
+    private int textPosition = DEFAULT_TEXT_POSITION;
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -47,7 +48,7 @@ public class HorizontalProgressBar extends ProgressBarBase {
     private void obtainAttrs(Context context, AttributeSet attrs) {
         if (null != attrs) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.HorizontalProgressBar);
-            textPositon = ta.getInt(R.styleable.HorizontalProgressBar_tr_text_location, textPositon);
+            textPosition = ta.getInt(R.styleable.HorizontalProgressBar_tr_text_position, textPosition);
             ta.recycle();
         }
     }
@@ -61,7 +62,7 @@ public class HorizontalProgressBar extends ProgressBarBase {
 
         int height = 0, width = 0;
 
-        if (textPositon == CENTER) {
+        if (textPosition == CENTER) {
             height = measureCenterHeight(heightMeasureSpecSize, heightMeasureSpecMode);
             width = measureCenterWidth(widthMeasureSpecSize, widthMeasureSpecMode);
         } else {
@@ -79,9 +80,9 @@ public class HorizontalProgressBar extends ProgressBarBase {
         if (heightMeasureSpecMode == MeasureSpec.AT_MOST) {
             if(textVisible){
                 int textHeight = (int) Math.abs(mPaint.descent() - mPaint.ascent()) + textPaddingBottom + textPaddingTop;
-                height = Math.max(textHeight, Math.max(reachHeight, unReachHeight)) + getPaddingBottom() + getPaddingTop();
+                height = Math.max(textHeight, Math.max(reachedHeight, unreachedHeight)) + getPaddingBottom() + getPaddingTop();
             }else {
-                height = Math.max(reachHeight, unReachHeight) + getPaddingBottom() + getPaddingTop();
+                height = Math.max(reachedHeight, unreachedHeight) + getPaddingBottom() + getPaddingTop();
             }
         } else {
             height = heightMeasureSpecSize;
@@ -107,9 +108,9 @@ public class HorizontalProgressBar extends ProgressBarBase {
         if (heightMeasureSpecMode == MeasureSpec.AT_MOST) {
             if(textVisible){
                 int textHeight = (int) Math.abs(mPaint.descent() + mPaint.ascent()) + textPaddingBottom + textPaddingTop;
-                height = textHeight + Math.max(reachHeight, unReachHeight) + getPaddingBottom() + getPaddingTop();
+                height = textHeight + Math.max(reachedHeight, unreachedHeight) + getPaddingBottom() + getPaddingTop();
             }else{
-                height = Math.max(reachHeight, unReachHeight) + getPaddingBottom() + getPaddingTop();
+                height = Math.max(reachedHeight, unreachedHeight) + getPaddingBottom() + getPaddingTop();
             }
         } else {
             height = heightMeasureSpecSize;
@@ -127,37 +128,37 @@ public class HorizontalProgressBar extends ProgressBarBase {
         canvas.save();
         canvas.translate(getPaddingLeft(), getPaddingTop());
 
-        switch (textPositon) {
+        switch (textPosition) {
             case CENTER:
                 drawCenterBar(canvas);
                 break;
-            case RIGHTBOTTOM:
+            case RIGHT_BOTTOM:
                 drawRightBottomBar(canvas);
                 break;
-            case RIGHTTOP:
+            case RIGHT_TOP:
                 drawRightTopBar(canvas);
                 break;
-            case LEFTBOTTOM:
+            case LEFT_BOTTOM:
                 drawLeftBottomBar(canvas);
                 break;
-            case LEFTTOP:
+            case LEFT_TOP:
                 drawLetTopBar(canvas);
                 break;
             default:
-                throw new RuntimeException("No such position!");
+                throw new RuntimeException("Unsupported position!");
         }
         canvas.restore();
     }
 
     private void drawTopBar(Canvas canvas){
-        mPaint.setColor(reachColor);
-        mPaint.setStrokeWidth(reachHeight);
+        mPaint.setColor(reachedColor);
+        mPaint.setStrokeWidth(reachedHeight);
         int reachBarLength = (int) (1.0f * getProgress() / getMax() * mRealWidth);
-        int drawY = (int) (mRealHeight - Math.max(reachHeight * 0.5f,unReachHeight * 0.5f));
+        int drawY = (int) (mRealHeight - Math.max(reachedHeight * 0.5f,unreachedHeight * 0.5f));
         canvas.drawLine(0,drawY,reachBarLength,drawY,mPaint);
 
-        mPaint.setColor(unReachColor);
-        mPaint.setStrokeWidth(unReachHeight);
+        mPaint.setColor(unreachedColor);
+        mPaint.setStrokeWidth(unreachedHeight);
         canvas.drawLine(reachBarLength,drawY,mRealWidth,drawY,mPaint);
     }
 
@@ -176,14 +177,14 @@ public class HorizontalProgressBar extends ProgressBarBase {
     }
 
     private void drawBottomBar(Canvas canvas){
-        mPaint.setColor(reachColor);
-        mPaint.setStrokeWidth(reachHeight);
+        mPaint.setColor(reachedColor);
+        mPaint.setStrokeWidth(reachedHeight);
         int reachBarLength = (int) (1.0f * getProgress() / getMax() * mRealWidth);
-        int drawY = (int) Math.max(reachHeight * 0.5f,unReachHeight * 0.5f);
+        int drawY = (int) Math.max(reachedHeight * 0.5f,unreachedHeight * 0.5f);
         canvas.drawLine(0,drawY,reachBarLength,drawY,mPaint);
 
-        mPaint.setColor(unReachColor);
-        mPaint.setStrokeWidth(unReachHeight);
+        mPaint.setColor(unreachedColor);
+        mPaint.setStrokeWidth(unreachedHeight);
         canvas.drawLine(reachBarLength,drawY,mRealWidth,drawY,mPaint);
     }
 
@@ -226,13 +227,13 @@ public class HorizontalProgressBar extends ProgressBarBase {
             String drawText = getProcessText();
             int drawLength = (int) mPaint.measureText(drawText);
             int drawX = mRealWidth - textPaddingRight - drawLength;
-            int drawY = (int) (Math.max(reachHeight,unReachHeight) + textPaddingTop - mPaint.descent() - mPaint.ascent());
+            int drawY = (int) (Math.max(reachedHeight,unreachedHeight) + textPaddingTop - mPaint.descent() - mPaint.ascent());
             canvas.drawText(drawText,drawX,drawY,mPaint);
         }
     }
 
     private void drawCenterBar(Canvas canvas) {
-        boolean drawUnRech = true;
+        boolean drawUnreached = true;
         mPaint.setTextSize(textSize);
         String drawText = getProcessText();
 
@@ -246,14 +247,14 @@ public class HorizontalProgressBar extends ProgressBarBase {
         }
         int textLength = (int) mPaint.measureText(drawText);
 
-        mPaint.setColor(reachColor);
-        mPaint.setStrokeWidth(reachHeight);
+        mPaint.setColor(reachedColor);
+        mPaint.setStrokeWidth(reachedHeight);
         int reachBarLength = (int) (1.0f * getProgress() / getMax() * mRealWidth);
         int drawY = (int) (1.0f * mRealHeight / 2);
 
         if(reachBarLength + textLength + textPaddingLeft > mRealWidth){
             reachBarLength = mRealWidth - textLength - textPaddingLeft;
-            drawUnRech = false;
+            drawUnreached = false;
         }
         canvas.drawLine(0, drawY, reachBarLength, drawY, mPaint);
 
@@ -262,24 +263,24 @@ public class HorizontalProgressBar extends ProgressBarBase {
         drawY = (int) (drawY - (mPaint.descent() + mPaint.ascent()) / 2);
         canvas.drawText(drawText,drawX,drawY,mPaint);
 
-        if(drawUnRech){
-            mPaint.setColor(unReachColor);
-            mPaint.setStrokeWidth(unReachHeight);
+        if(drawUnreached){
+            mPaint.setColor(unreachedColor);
+            mPaint.setStrokeWidth(unreachedHeight);
             int startX = reachBarLength + textPaddingLeft + textPaddingRight + textLength;
             drawY = (int) (1.0f * mRealHeight / 2);
             canvas.drawLine(startX,drawY,mRealWidth,drawY,mPaint);
         }
     }
 
-    public int getTextPositon() {
-        return textPositon;
+    public int getTextPosition() {
+        return textPosition;
     }
 
-    public void setTextPositon(int textPositon) {
-        if(textPositon < CENTER && textPositon > LEFTBOTTOM){
-            throw  new RuntimeException("No such position!");
+    public void setTextPosition(int textPosition) {
+        if(textPosition < CENTER && textPosition > LEFT_BOTTOM){
+            throw  new RuntimeException("Unsupported position!");
         }
-        this.textPositon = textPositon;
+        this.textPosition = textPosition;
         postInvalidate();
     }
 }
