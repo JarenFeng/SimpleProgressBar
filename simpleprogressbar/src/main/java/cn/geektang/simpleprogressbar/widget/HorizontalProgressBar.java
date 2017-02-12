@@ -237,13 +237,18 @@ public class HorizontalProgressBar extends ProgressBarBase {
         mPaint.setTextSize(textSize);
         String drawText = getProcessText();
 
+        int _textPaddingLeft = textPaddingLeft;
+        int _textPaddingRight = textPaddingRight;
+        //int _textPaddingTop = textPaddingTop;
+        //int _textPaddingBottom = textPaddingBottom;
+
         if(!textVisible){
             drawText = "";
             // 重置textPadding
-            textPaddingLeft = 0;
-            textPaddingRight = 0;
-            textPaddingTop = 0;
-            textPaddingBottom = 0;
+            _textPaddingLeft = 0;
+            _textPaddingRight = 0;
+            //_textPaddingTop = 0;
+            //_textPaddingBottom = 0;
         }
         int textLength = (int) mPaint.measureText(drawText);
 
@@ -252,21 +257,21 @@ public class HorizontalProgressBar extends ProgressBarBase {
         int reachBarLength = (int) (1.0f * getProgress() / getMax() * mRealWidth);
         int drawY = (int) (1.0f * mRealHeight / 2);
 
-        if(reachBarLength + textLength + textPaddingLeft > mRealWidth){
-            reachBarLength = mRealWidth - textLength - textPaddingLeft;
+        if(reachBarLength + textLength + _textPaddingLeft > mRealWidth){
+            reachBarLength = mRealWidth - textLength - _textPaddingLeft;
             drawUnreached = false;
         }
         canvas.drawLine(0, drawY, reachBarLength, drawY, mPaint);
 
         mPaint.setColor(textColor);
-        int drawX = reachBarLength + textPaddingLeft;
+        int drawX = reachBarLength + _textPaddingLeft;
         drawY = (int) (drawY - (mPaint.descent() + mPaint.ascent()) / 2);
         canvas.drawText(drawText,drawX,drawY,mPaint);
 
         if(drawUnreached){
             mPaint.setColor(unreachedColor);
             mPaint.setStrokeWidth(unreachedHeight);
-            int startX = reachBarLength + textPaddingLeft + textPaddingRight + textLength;
+            int startX = reachBarLength + _textPaddingLeft + _textPaddingRight + textLength;
             drawY = (int) (1.0f * mRealHeight / 2);
             canvas.drawLine(startX,drawY,mRealWidth,drawY,mPaint);
         }
